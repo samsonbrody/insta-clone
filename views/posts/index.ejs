@@ -1,0 +1,22 @@
+<% layout('layouts/boilerplate') -%> <% for(let post of posts) { %>
+
+<div class="card mb-3">
+  <div class="col">
+    <% for(let i of post.images){ %>
+    <div class="row-sm-3">
+      <img class="card-img-top" src="<%= i.url%>" alt="" />
+    </div>
+    <% } %>
+    <div class="row-sm-3">
+      <div class="card-body">
+        <h5 class="card-title"><%= post.title %></h5>
+        <p class="card-text text-muted">
+          Posted by: <%= post.author.username %>
+        </p>
+        <a href="/posts/<%=post._id%>">view</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% } %>

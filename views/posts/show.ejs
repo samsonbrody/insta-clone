@@ -1,0 +1,66 @@
+<% layout('layouts/boilerplate') -%>
+
+<div class="card">
+  <% for(let i of post.images) { %>
+  <img class="card-img-top" src="<%=i.url%>" alt="" />
+  <% } %>
+  <div class="card-body">
+    <h1 class="card-title"><%= post.title %></h1>
+    <p class="card-text"><%= post.caption %></p>
+    <p class="card-text text-muted">Posted by: @<%=post.author.username%></p>
+    <% if(currentUser && currentUser.equals(post.author._id)) { %>
+    <div class="editdelete mb-4">
+      <div class="mb-2">
+        <form action="/posts/<%=post._id%>?_method=DELETE" method="POST">
+          <button class="btn btn-sm btn-danger">DELETE POST</button>
+        </form>
+      </div>
+      <div class="mb-2">
+        <a class="btn btn-sm btn-warning" href="/posts/<%=post._id%>/edit"
+          >EDIT POST</a
+        >
+      </div>
+    </div>
+    <% } %> <% if(currentUser){ %>
+    <form
+      class="form-control"
+      action="/posts/<%=post._id%>/comments"
+      method="POST"
+    >
+      <div class="form-group mt-2 mb-2">
+        <label class="form-label" for="body">Comment</label>
+        <input
+          class="form-control"
+          type="text"
+          id="body"
+          name="comment[body]"
+        />
+        <!-- <label class="form-label" for="username">Username:</label>
+        <input
+          class="form-control"
+          type="text"
+          id="username"
+          name="comment[username]"
+        /> -->
+        <button class="btn btn-sm btn-success mt-3 mb-2">submit</button>
+      </div>
+    </form>
+    <% } %> <% for(let c of post.comments){ %>
+    <div class="card mt-4">
+      <h5 class="card-header"><b>@<%=c.author.username %></b></h5>
+      <div class="card-body">
+        <p class="card-text"><%= c.body %></p>
+        <% if(currentUser && currentUser.equals(c.author)){ %>
+        <form
+          action="/posts/<%=post._id%>/comments/<%=c._id%>?_method=DELETE"
+          method="POST"
+        >
+          <button class="btn btn-danger btn-sm mt-1">Delete</button>
+        </form>
+        <% } %>
+      </div>
+    </div>
+
+    <% } %>
+  </div>
+</div>

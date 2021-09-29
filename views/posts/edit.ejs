@@ -1,0 +1,37 @@
+<% layout('layouts/boilerplate') -%>
+<form
+  action="/posts/<%=post._id%>?_method=PATCH"
+  method="POST"
+  novalidate
+  class="validated-form form-control"
+>
+  <h1>EDIT Post</h1>
+  <label class="form-label" for="title">Title:</label>
+  <input
+    class="form-control"
+    type="text"
+    name="post[title]"
+    id="title"
+    value="<%=post.title%> "
+    required
+  />
+  <label class="form-label" for="imgUrl">Image URL:</label>
+  <input
+    class="form-control"
+    type="text"
+    name="post[imgUrl]"
+    id="imgUrl"
+    value="<%=post.imgUrl%> "
+    required
+  />
+  <label class="form-label" for="caption">Caption:</label>
+  <input
+    class="form-control"
+    type="text"
+    name="post[caption]"
+    id="caption"
+    value="<%=post.caption%> "
+    required
+  />
+  <button class="btn btn-success mt-4 mb-3">Submit</button>
+</form>

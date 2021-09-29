@@ -1,0 +1,42 @@
+<nav
+  class="navbar sticky-top navbar-expand-lg navbar-dark"
+  style="background-color: #8a3ab9"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="">INSTA CLONE</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/posts"
+            >All Posts <span class="sr-only"></span
+          ></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/posts/new">New Post</a>
+        </li>
+      </ul>
+      <div class="navbar-nav ml-auto">
+         
+        <% if(!currentUser) { %>  
+        <a class="nav-link" href="/login">Login</a>
+        <a class="nav-link" href="/register">Register</a>
+        <% } else {  %> 
+          <a class="nav-link" href="/logout">Logout</a>
+          <a class="nav-link" href="/posts">Hi, <%=currentUser.username%> </a> 
+
+        <% } %> 
+    </div>
+    </div>
+    
+</nav>
