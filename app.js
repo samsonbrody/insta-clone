@@ -46,7 +46,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 
-const secret = process.env.SECRET || "greatsecret";
+const secret = process.env.SECRET;
 
 const store = new MongoDBStore({
   url: dbUrl,
